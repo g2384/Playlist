@@ -55,7 +55,7 @@
 	width: 15px;
 	height: 20px;
 	left: 0px;
-	top: -6px;
+	top: -3px;
 }
 .noUi-horizontal.noUi-extended {
 	padding: 0 15px;
@@ -92,7 +92,7 @@
 	transition: background 450ms;
 }
 .noUi-origin {
-	border-radius: 2px;
+	border-radius: 0px;
 }
 .noUi-target {
 	border-radius: 4px;
