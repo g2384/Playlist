@@ -28,6 +28,14 @@ var i = 0,
     loop = 0,
     duration = 100,
     currentTime = 0;
+var slider = $("#slider");
+slider.noUiSlider({
+	start: [0, duration],
+	range: {
+		'min': [ 0 ],
+		'max': [ duration ]
+	}
+});
 var cur = [];
 // create youtube player
 var player;
@@ -115,12 +123,12 @@ function loadVideo() {
 }
 
 function addSlider(){
-	$("#slider").noUiSlider({
+slider.noUiSlider({
 	start: [0, duration],
 	range: {
 		'min': [ 0 ],
 		'max': [ duration ]
 	}
-});
+}, true);
 }
 </script></html>
