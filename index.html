@@ -27,7 +27,8 @@ var i = 0,
     l = new_list.length,
     loop = 0,
     duration = 100,
-    currentTime = 0;
+    currentTime = 0,
+    lowerValue, upperValue;
 var slider = $("#slider");
 slider.noUiSlider({
 	start: [0, duration],
@@ -35,7 +36,26 @@ slider.noUiSlider({
 		'min': [ 0 ],
 		'max': [ duration ]
 	}
+	,connect: true
+	,serialization: {
+		lower: [
+			new Link({
+				target: lowerValue
+			})
+		],
+		upper: [
+			new Link({
+				target: upperValue
+			})
+		]
+	}
+
 });
+var Link = $.noUiSlider.Link;
+new Link({
+	target: $("#slider"),
+	method: "text"
+})
 var cur = [];
 // create youtube player
 var player;
