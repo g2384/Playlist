@@ -23,7 +23,8 @@ var new_list = document.getElementById("new").value.split("#");
 var i = 0,
     l = new_list.length,
     loop = 0,
-    duration = 0;
+    duration = 0,
+    currentTime = 0;
 var cur = [];
 // create youtube player
 var player;
@@ -46,6 +47,10 @@ function onYouTubePlayerAPIReady() {
 
 function updateytplayerInfo(){
     duration = player.getDuration();
+}
+
+function getCurrentTime() {
+  currentTime = Math.floor(player.getCurrentTime());
 }
 
 function onPlayerReady(event) {
@@ -109,7 +114,7 @@ $("#slider").noUiSlider({
 	start: [0, ],
 	range: {
 		'min': [ 0 ],
-		'max': duration
+		'max': [ 100 ]
 	}
 });
 </script></html>
