@@ -28,7 +28,8 @@ var i = 0,
     loop = 0,
     duration = 100,
     currentTime = 0,
-    lowerValue, upperValue;
+    lowerValue = 0, 
+    upperValue = 0;
 var slider = $("#slider");
 slider.noUiSlider({
 	start: [0, duration],
@@ -38,15 +39,10 @@ slider.noUiSlider({
 	}
 	,connect: true
 	,serialization: {
-		lower: [
-			new Link({
-				target: lowerValue
-			})
+		lower: [target: lowerValue
 		],
 		upper: [
-			new Link({
 				target: upperValue
-			})
 		]
 	}
 
