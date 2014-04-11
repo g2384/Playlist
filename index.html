@@ -5,6 +5,7 @@ body{max-width: 800px; margin:0 auto;}iframe, object, embed {max-width: 100%;}
 <br />
 <div id="iplayer"><iframe width="640" height="390" name="frame1" frameborder="0" type="text/html" src=""></iframe></div><br>
 <button type="button" onclick="Prev()">Prev</button>
+<button type="button" onclick="Loop()">Loop</button>
 <button type="button" onclick="Next()">Next</button><br>
 <input type="text" id="new" value="THE MAN#ALL OF ME#I GOT U#MY LOVE#CHANGES#HAPPY#ANYWHERE FOR YOU#RATHER BE#I'M A FREAK#SHE LOOKS SO PERFECT#DARK HORSE#SCREAM (FUNK MY LIFE UP)#LOYAL#MONEY ON MY MIND#ADDICTED TO YOU#SELFIE#LET IT GO#TSUNAMI (JUMP)#HUMAN#WIZARD#SAY SOMETHING#MAGIC#TIMBER#FEELIN' MYSELF#EMPIRE#RED LIGHTS#IF I COULD CHANGE YOUR MIND#READY FOR YOUR LOVE#YOUR LOVE" />
 <button type="button" onclick="LoadNew()">Load</button>
@@ -17,7 +18,8 @@ var new_ver = "March 23, 2014";
 var new_list = document.getElementById("new").value.split("#");
 
 var i = 0,
-    l = new_list.length;
+    l = new_list.length,
+    loop = 0;
 var cur = [];
 // create youtube player
 var player;
@@ -42,12 +44,18 @@ function onPlayerReady(event) {
 
 function onPlayerStateChange(event) {
     if (event.data === 0) {
-        i++;
-        if (i == l) {
+    	if (loop==0){
+	 i++;
+          if (i == l) {
             i = 0;
-        }
+         }
+    	}
         player.loadVideoById(cur[i], 0);
     }
+}
+
+function Loop() {
+    loop=1;
 }
 
 function Next() {
