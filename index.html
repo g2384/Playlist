@@ -37,14 +37,6 @@ slider.noUiSlider({
 		'min': [ 0 ],
 		'max': [ duration ]
 	}
-	,connect: true
-	,serialization: {
-		lower: [lowerValue
-		],
-		upper: [upperValue
-		]
-	}
-
 });
 
 var cur = [];
@@ -141,5 +133,7 @@ slider.noUiSlider({
 		'max': [ duration ]
 	}
 }, true);
+lowerValue = slider.val();
+
 }
 </script></html>
