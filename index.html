@@ -1,6 +1,7 @@
 <!doctype html>
 <html><head><title>UK Official Chart TOP 40</title><style>
 body{max-width: 800px; margin:0 auto;}iframe, object, embed {max-width: 100%;}
+.hidden{visibility:hidden;}
 </style>
 <link href="jquery.nouislider.css" rel="stylesheet">
 <body><div class=center><span id=ver></span><br>
@@ -10,39 +11,65 @@ body{max-width: 800px; margin:0 auto;}iframe, object, embed {max-width: 100%;}
 <button type="button" onclick="Loop()">Loop</button>
 <button type="button" onclick="Next()">Next</button><br>
 <div id="slider"></div>
+<span id="time"></span>
+<span id="duration-l" class="hidden"></span><span id="duration-u" class="hidden"></span><br>
 <input type="text" id="new" value="THE MAN#ALL OF ME#I GOT U#MY LOVE#CHANGES#HAPPY#ANYWHERE FOR YOU#RATHER BE#I'M A FREAK#SHE LOOKS SO PERFECT#DARK HORSE#SCREAM (FUNK MY LIFE UP)#LOYAL#MONEY ON MY MIND#ADDICTED TO YOU#SELFIE#LET IT GO#TSUNAMI (JUMP)#HUMAN#WIZARD#SAY SOMETHING#MAGIC#TIMBER#FEELIN' MYSELF#EMPIRE#RED LIGHTS#IF I COULD CHANGE YOUR MIND#READY FOR YOUR LOVE#YOUR LOVE" />
 <button type="button" onclick="LoadNew()">Load</button><br>
 input value="SONG TITLE#SONG TITLE" <span style="color:#888">//capital letters, splitted by #</span>
 </div></body>
 <script src="jquery.min.js"></script>
 <script src="jquery.nouislider.js"></script>
+<link href="jquery.nouislider.css" rel="stylesheet">
 
 <script src="http://www.youtube.com/player_api"></script>
 <script src="list.js"></script>
 <script>
 var new_ver = "March 23, 2014";
 var new_list = document.getElementById("new").value.split("#");
-
+var Link = $.noUiSlider.Link;
 var i = 0,
     l = new_list.length,
     loop = 0,
     duration = 100,
     currentTime = 0,
-    lowerValue = 0, 
-    upperValue = 0;
+    up = 0,
+	low = 0
+	;
 var slider = $("#slider");
 slider.noUiSlider({
 	start: [0, duration],
+	step: 1,
 	range: {
 		'min': [ 0 ],
 		'max': [ duration ]
 	}
+	,connect: true
+	,serialization: {
+		lower: [
+			new Link({
+				target: $('#duration-l'),
+				format: {
+					decimals: 0
+				}
+			})
+		],
+		upper: [
+			new Link({
+				target: $('#duration-u'),
+				format: {
+					decimals: 0
+				}
+			})
+		]
+	}
 });
+
 
 var cur = [];
 // create youtube player
 var player;
 
+var l_minutes
 function onYouTubePlayerAPIReady() {
     document.getElementById("ver").innerHTML = "Last Chart Update: " + new_ver;
     loadVideo();
@@ -55,32 +82,35 @@ function onYouTubePlayerAPIReady() {
             'onStateChange': onPlayerStateChange
         }
     });
-    setInterval(updateytplayerInfo, 600);
-    
+	setInterval(function() {
+	up=$('#duration-u').text();
+	low=$('#duration-l').text();
+	$("#time").text(Math.floor(low / 60)+":"+(low % 60)+" - "+
+	Math.floor(up / 60)+":"+(up % 60)+" (total: "+Math.floor((up-low) / 60)+":"+((up-low) % 60)+")");
+  if(player.getCurrentTime()>$('#duration-u').text()&&loop){
+  player.loadVideoById(cur[i], $('#duration-l').text(), $('#duration-u').text());
+  }
+}, 100);
 }
 
-function updateytplayerInfo(){
-    duration = player.getDuration();
-    currentTime = Math.floor(player.getCurrentTime());
-    if(duration<currentTime){
-    	duration = currentTime;
-    }
-    addSlider();
-}
 
 function onPlayerReady(event) {
     event.target.playVideo(); // autoplay video
 }
 
 function onPlayerStateChange(event) {
+
+	duration = player.getDuration();
+    addSlider(loop);
+	
     if (event.data === 0) {
-    	if (loop==0){
-	 i++;
+    	if (!loop){
+			i++;
           if (i == l) {
             i = 0;
          }
     	}
-        player.loadVideoById(cur[i], 0);
+        player.loadVideoById(cur[i], $('#duration-l').text(), $('#duration-u').text());
     }
 }
 
@@ -125,15 +155,35 @@ function loadVideo() {
     }
 }
 
-function addSlider(){
+function addSlider(loop){
+if(!loop){
 slider.noUiSlider({
 	start: [0, duration],
+	step: 1,
 	range: {
 		'min': [ 0 ],
 		'max': [ duration ]
 	}
+	,connect: true
+	,serialization: {
+		lower: [
+			new Link({
+				target: $('#duration-l'),
+				format: {
+					decimals: 0
+				}
+			})
+		],
+		upper: [
+			new Link({
+				target: $('#duration-u'),
+				format: {
+					decimals: 0
+				}
+			})
+		]
+	}
 }, true);
-lowerValue = slider.val();
-
+}
 }
 </script></html>
