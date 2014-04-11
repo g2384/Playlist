@@ -14,6 +14,7 @@ input value="SONG TITLE#SONG TITLE" <span style="color:#888">//capital letters, 
 </div></body>
 <script src="jquery.min.js"></script>
 <script src="jquery.nouislider.js"></script>
+<link href="http://refreshless.com/nouislider/source/jquery.nouislider.css" rel="stylesheet">
 <script src="http://www.youtube.com/player_api"></script>
 <script src="list.js"></script>
 <script>
@@ -23,7 +24,7 @@ var new_list = document.getElementById("new").value.split("#");
 var i = 0,
     l = new_list.length,
     loop = 0,
-    duration = 0,
+    duration = 100,
     currentTime = 0;
 var cur = [];
 // create youtube player
@@ -47,10 +48,11 @@ function onYouTubePlayerAPIReady() {
 
 function updateytplayerInfo(){
     duration = player.getDuration();
-}
-
-function getCurrentTime() {
-  currentTime = Math.floor(player.getCurrentTime());
+    currentTime = Math.floor(player.getCurrentTime());
+    if(duration<currentTime){
+    	duration = currentTime;
+    }
+    addSlider();
 }
 
 function onPlayerReady(event) {
@@ -110,11 +112,13 @@ function loadVideo() {
     }
 }
 
-$("#slider").noUiSlider({
-	start: [20, 80],
+function addSlider(){
+	$("#slider").noUiSlider({
+	start: [0, duration],
 	range: {
 		'min': [ 0 ],
-		'max': [ 100 ]
+		'max': [ duration ]
 	}
 });
+}
 </script></html>
