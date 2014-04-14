@@ -1,5 +1,6 @@
 Weeks in the chart
 ---------------------------------------
+<pre>
    COUNT | Title
       75 | MY WAY	FRANK SINATRA
       52 | STRANGER ON THE SHORE	MR. ACKER BILK
@@ -3499,5 +3500,5 @@ Weeks in the chart
       10 | YOU'RE IN MY HEART	ROD STEWART
       10 | YOU'RE SIXTEEN	RINGO STARR
       10 | YOUNG	TULISA
-      10 | YOUR SONG	ELTON JOHN
+      10 | YOUR SONG	ELTON JOHN</pre>
 ------------------------------------------------------
