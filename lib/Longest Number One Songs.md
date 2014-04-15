@@ -1,4 +1,4 @@
-COUNT    | LINE
+# of Weeks    | Title
 -----------------------------------------------------
       16 | (EVERYTHING I DO) I DO IT FOR YOU	BRYAN ADAMS
       14 | LOVE IS ALL AROUND	WET WET WET
