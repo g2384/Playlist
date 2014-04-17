@@ -123,6 +123,7 @@ function Loop() {
 
 function Next() {
     loop=0;
+    $('#setTime').css({"display":"none"});
     i++;
     if (i == l) {
         i = 0;
@@ -132,6 +133,7 @@ function Next() {
 
 function Prev() {
     loop=0;
+    $('#setTime').css({"display":"none"});
     i--;
     if (i < 0) {
         i = 0;
