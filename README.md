@@ -18,4 +18,6 @@ Loop YouTube Videos
 
 You can combine [this PHP Youtube API](https://gist.github.com/g2384/10934655) to search videos or to collect links. So that you don't need a js library to store all the songs. Just play and search simultaneous.
 
-More about [Youtube Data API](https://developers.google.com/youtube/v3/docs/search/list). The request links is like this: https://www.googleapis.com/youtube/v3/search?part=snippet&q={YOUR_KEY_WORD}&key={YOUR_API_KEY}
+More about [Youtube Data API on Google Developers](https://developers.google.com/youtube/v3/docs/search/list). 
+
+The request links is like this: https://www.googleapis.com/youtube/v3/search?part=snippet&q={YOUR_KEY_WORD}&key={YOUR_API_KEY}
