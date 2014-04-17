@@ -13,3 +13,7 @@ Loop YouTube Videos
 
 - Play multiple songs in a loop
 - Loop one song, and set a time interval
+
+###Youtube API
+
+Use [Youtube API to collect links](https://gist.github.com/g2384/10934655)
