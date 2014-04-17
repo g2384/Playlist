@@ -16,4 +16,4 @@ Loop YouTube Videos
 
 ###Youtube API
 
-Use [Youtube API to collect links](https://gist.github.com/g2384/10934655)
+You can combine [this PHP Youtube API](https://gist.github.com/g2384/10934655) to search videos or to collect links. So that you don't need a js library to store all the songs. Just play and search simultaneous.
